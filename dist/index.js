@@ -37,26 +37,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var jokeButton = document.querySelector(".getJoke");
 var jokeHolder = document.querySelector(".joke");
-var getData = function (url) { return __awaiter(void 0, void 0, void 0, function () {
-    var response, data;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("https://icanhazdadjoke.com/", {
-                    headers: {
-                        Accept: "application/json",
-                    },
-                })];
-            case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                data = _a.sent();
-                console.log(data);
-                return [2 /*return*/, data];
-        }
+//the API is telling us we need to pass an Accept Header
+//a header is some additional info that comes along w/ a request
+//you can see the ones were passed along w/ the response
+//the way you do that you pass a second object to fetch
+function getData() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch("https://icanhazdadjoke.com/", {
+                        headers: {
+                            Accept: "application/json",
+                        },
+                    })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data);
+                    return [2 /*return*/, data];
+            }
+        });
     });
-}); };
-getData("https://icanhazdadjoke.com/")
+}
+getData()
     .then(function (data) {
     // manejar los datos aqui
 })
