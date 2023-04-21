@@ -1,6 +1,7 @@
 let jokeHolder: HTMLElement | null = document.getElementById("joke");
-let jokeButton: HTMLElement | null = document.querySelector("getJoke");
+let scoreBtns: HTMLElement | null = document.getElementById("score-btns");
 
+let results: string;
 let reportJokes: object[] = [];
 
 async function getData() {
@@ -11,6 +12,16 @@ async function getData() {
     };
     const jokes: any = await fetch(url, header);
     const result: any = await jokes.json();
-    jokeHolder.innerHTML = result.joke;
-    console.log(result);
+    results = result.joke;
+    jokeHolder.innerHTML = results;
+}
+
+function getReport(score: number) {
+    reportJokes.push({
+        joke: results,
+        score: score,
+        date: new Date().toISOString(),
+    });
+
+    console.log(reportJokes);
 }

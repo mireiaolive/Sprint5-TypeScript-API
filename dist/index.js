@@ -36,7 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var jokeHolder = document.getElementById("joke");
-var jokeButton = document.querySelector("getJoke");
+var scoreBtns = document.getElementById("score-btns");
+var results;
 var reportJokes = [];
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
@@ -55,10 +56,18 @@ function getData() {
                     return [4 /*yield*/, jokes.json()];
                 case 2:
                     result = _a.sent();
-                    jokeHolder.innerHTML = result.joke;
-                    console.log(result);
+                    results = result.joke;
+                    jokeHolder.innerHTML = results;
                     return [2 /*return*/];
             }
         });
     });
+}
+function getReport(score) {
+    reportJokes.push({
+        joke: results,
+        score: score,
+        date: new Date().toISOString(),
+    });
+    console.log(reportJokes);
 }
