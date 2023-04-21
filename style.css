@@ -1,0 +1,33 @@
+* {
+    font-family: "Helvetica";
+}
+
+body {
+    background-image: url("img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: white;
+    top: 10%;
+    left: 25%;
+    width: 700px;
+    height: 300px;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.getJoke {
+    border-radius: 10px;
+    background-color: #3dd3de;
+    color: white;
+    border: none;
+    padding: 15px 35px 15px 35px;
+    cursor: pointer;
+}

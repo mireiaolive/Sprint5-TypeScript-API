@@ -35,12 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var jokeButton = document.querySelector(".getJoke");
-var jokeHolder = document.querySelector(".joke");
-//the API is telling us we need to pass an Accept Header
-//a header is some additional info that comes along w/ a request
-//you can see the ones were passed along w/ the response
-//the way you do that you pass a second object to fetch
+var jokeButton = document.querySelector("getJoke");
+jokeButton.addEventListener("click", nextJoke);
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
         var response, data;
@@ -53,7 +49,6 @@ function getData() {
                     })];
                 case 1:
                     response = _a.sent();
-                    console.log(response);
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
@@ -63,10 +58,18 @@ function getData() {
         });
     });
 }
-getData()
-    .then(function (data) {
-    // manejar los datos aqui
-})
-    .catch(function (error) {
-    console.error(error);
-});
+function nextJoke() {
+    getData()
+        .then(function (data) {
+        var joke = data.joke;
+        // Mostrar el chiste en la página
+        var jokeHolder = document.getElementById("joke");
+        jokeHolder.textContent = joke;
+        // Guardar el chiste actual
+        var currentJoke;
+        currentJoke = joke;
+    })
+        .catch(function (error) {
+        console.error(error);
+    });
+}
