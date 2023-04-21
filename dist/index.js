@@ -35,48 +35,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var jokeHolder = document.getElementById("joke");
 var jokeButton = document.querySelector("getJoke");
-jokeButton.addEventListener("click", nextJoke);
+var reportJokes = [];
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data;
+        var url, header, jokes, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch("https://icanhazdadjoke.com/", {
-                        headers: {
-                            Accept: "application/json",
-                        },
-                    })];
+                case 0:
+                    url = "https://icanhazdadjoke.com/";
+                    header = {
+                        method: "GET",
+                        headers: { Accept: "application/json" },
+                    };
+                    return [4 /*yield*/, fetch(url, header)];
                 case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
+                    jokes = _a.sent();
+                    return [4 /*yield*/, jokes.json()];
                 case 2:
-                    data = _a.sent();
-                    return [2 /*return*/, data];
+                    result = _a.sent();
+                    jokeHolder.innerHTML = result.joke;
+                    console.log(result);
+                    return [2 /*return*/];
             }
         });
-    });
-}
-function nextJoke() {
-    getData()
-        .then(function (data) {
-        var joke = data.joke;
-        var jokeHolder = document.getElementById("joke");
-        jokeHolder.textContent = joke;
-        // Guardar el chiste actual
-        var currentJoke;
-        currentJoke = joke;
-    })
-        .catch(function (error) {
-        console.error(error);
-    });
-}
-function getReport(score) {
-    var reportJokes = [];
-    var date = new Date();
-    reportJokes.push({
-        joke: currentJoke,
-        score: score,
-        date: date.toISOString(),
     });
 }
