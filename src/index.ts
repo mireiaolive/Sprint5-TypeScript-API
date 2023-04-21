@@ -8,7 +8,6 @@ async function getData() {
         },
     });
     const data = await response.json();
-    console.log(data);
     return data;
 }
 
@@ -16,8 +15,6 @@ function nextJoke(): void {
     getData()
         .then((data: { joke: string }) => {
             const joke: string = data.joke;
-
-            // Mostrar el chiste en la página
             const jokeHolder: HTMLElement = document.getElementById("joke");
             jokeHolder.textContent = joke;
             // Guardar el chiste actual
