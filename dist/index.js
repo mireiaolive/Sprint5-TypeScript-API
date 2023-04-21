@@ -72,9 +72,9 @@ function nextJoke() {
     });
 }
 function getReport(score) {
-    var reportAcudits = [];
+    var reportJokes = [];
     var date = new Date();
-    reportAcudits.push({
+    reportJokes.push({
         joke: currentJoke,
         score: score,
         date: date.toISOString(),

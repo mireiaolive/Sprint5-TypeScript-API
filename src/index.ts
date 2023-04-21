@@ -28,9 +28,9 @@ function nextJoke(): void {
 }
 
 function getReport(score: number) {
-    const reportAcudits = [];
+    const reportJokes = [];
     const date = new Date();
-    reportAcudits.push({
+    reportJokes.push({
         joke: currentJoke,
         score: score,
         date: date.toISOString(),
