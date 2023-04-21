@@ -1,4 +1,4 @@
-const jokeButton: HTMLButtonElement = document.querySelector("getJoke")!;
+const jokeButton: HTMLElement | null = document.querySelector("getJoke")!;
 jokeButton.addEventListener("click", nextJoke);
 
 async function getData() {
@@ -15,7 +15,8 @@ function nextJoke(): void {
     getData()
         .then((data: { joke: string }) => {
             const joke: string = data.joke;
-            const jokeHolder: HTMLElement = document.getElementById("joke")!;
+            const jokeHolder: HTMLElement | null =
+                document.getElementById("joke")!;
             jokeHolder.textContent = joke;
             // Guardar el chiste actual
             let currentJoke: string;
