@@ -71,3 +71,12 @@ function nextJoke() {
         console.error(error);
     });
 }
+function getReport(score) {
+    var reportAcudits = [];
+    var date = new Date();
+    reportAcudits.push({
+        joke: currentJoke,
+        score: score,
+        date: date.toISOString(),
+    });
+}

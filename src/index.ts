@@ -26,3 +26,13 @@ function nextJoke(): void {
             console.error(error);
         });
 }
+
+function getReport(score: number) {
+    const reportAcudits = [];
+    const date = new Date();
+    reportAcudits.push({
+        joke: currentJoke,
+        score: score,
+        date: date.toISOString(),
+    });
+}

@@ -18,7 +18,7 @@ body {
     top: 10%;
     left: 25%;
     width: 700px;
-    height: 300px;
+    height: 350px;
     border-radius: 15px;
     z-index: 1;
 }
@@ -30,4 +30,29 @@ body {
     border: none;
     padding: 15px 35px 15px 35px;
     cursor: pointer;
+}
+
+.getJoke:hover {
+    background-color: #0bb9c6;
+    transition: 0.4s;
+}
+
+#joke {
+    padding: 20px;
+    height: 40px;
+    text-align: center;
+}
+
+.rate-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.rate-btn {
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    width: 60px;
+    margin: 10px;
+    border-radius: 50%;
 }
