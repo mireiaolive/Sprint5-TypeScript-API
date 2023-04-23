@@ -24,6 +24,7 @@ async function getData() {
     }
     //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
     scoreBtns?.classList.remove("notshow");
+    generateBase();
 }
 
 function getReport(score: number) {
@@ -57,3 +58,9 @@ async function getWeather(position: any) {
 }
 
 getLocation();
+
+function generateBase() {
+    let background: HTMLElement | null = document.getElementById("background")!;
+    const randomNum = Math.floor(Math.random() * 11) + 1;
+    background.style.backgroundImage = `url('./img/waves-${randomNum}.svg')`;
+}

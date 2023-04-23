@@ -66,6 +66,7 @@ function getData() {
                     }
                     //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
                     scoreBtns === null || scoreBtns === void 0 ? void 0 : scoreBtns.classList.remove("notshow");
+                    generateBase();
                     return [2 /*return*/];
             }
         });
@@ -108,3 +109,8 @@ function getWeather(position) {
     });
 }
 getLocation();
+function generateBase() {
+    var background = document.getElementById("background");
+    var randomNum = Math.floor(Math.random() * 11) + 1;
+    background.style.backgroundImage = "url('./img/waves-" + randomNum + ".svg')";
+}
