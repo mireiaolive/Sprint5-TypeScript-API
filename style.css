@@ -56,3 +56,27 @@ body {
     margin: 10px;
     border-radius: 50%;
 }
+
+.notshow {
+    display: none;
+}
+
+#show-weather {
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#image-weather {
+    border-right: 3px black solid;
+    padding: 5px;
+    width: 45px;
+    height: 45px;
+}
+
+#temperature {
+    padding: 25px 0px 0px 25px;
+}

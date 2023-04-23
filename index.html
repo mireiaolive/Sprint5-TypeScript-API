@@ -8,13 +8,18 @@
         <title>Acudit</title>
     </head>
     <body>
+        <div id="show-weather">
+            <img id="image-weather" src="./img/0.png" alt="Weather graphics" />
+            <h1><span id="temperature"></span>º</h1>
+        </div>
+
         <div class="wrapper">
             <h2>Preparat per riure!?</h2>
             <p id="joke"></p>
-            <div class="rate-container" id="score-btns">
+            <div class="rate-container notshow" id="score-btns">
                 <button class="rate-btn" onclick="getReport(1)">1</button>
-                <button class="rate-btn" onclick="getReport(1)">2</button>
-                <button class="rate-btn" onclick="getReport(1)">3</button>
+                <button class="rate-btn" onclick="getReport(2)">2</button>
+                <button class="rate-btn" onclick="getReport(3)">3</button>
             </div>
             <button class="getJoke" onclick="getData()">Seguent Acudit</button>
         </div>

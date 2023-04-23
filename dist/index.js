@@ -37,19 +37,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var jokeHolder = document.getElementById("joke");
 var scoreBtns = document.getElementById("score-btns");
+var showWeather = document.getElementById("show-weather");
+var temperature = document.getElementById("temperature");
+var imageWeather = document.getElementById("image-weather");
+var header = {
+    method: "GET",
+    headers: { Accept: "application/json" },
+};
 var results;
 var reportJokes = [];
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, header, jokes, result;
+        var url, jokes, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     url = "https://icanhazdadjoke.com/";
-                    header = {
-                        method: "GET",
-                        headers: { Accept: "application/json" },
-                    };
                     return [4 /*yield*/, fetch(url, header)];
                 case 1:
                     jokes = _a.sent();
@@ -58,6 +61,8 @@ function getData() {
                     result = _a.sent();
                     results = result.joke;
                     jokeHolder.innerHTML = results;
+                    //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
+                    scoreBtns === null || scoreBtns === void 0 ? void 0 : scoreBtns.classList.remove("notshow");
                     return [2 /*return*/];
             }
         });
@@ -71,3 +76,30 @@ function getReport(score) {
     });
     console.log(reportJokes);
 }
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(getWeather);
+}
+function getWeather(position) {
+    return __awaiter(this, void 0, void 0, function () {
+        var lat, lon, urlWeather, result, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    lat = position.coords.latitude;
+                    lon = position.coords.longitude;
+                    urlWeather = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&daily=weathercode&current_weather=true&timezone=Europe%2FBerlin";
+                    return [4 /*yield*/, fetch(urlWeather, header)];
+                case 1:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data.current_weather);
+                    imageWeather.setAttribute("src", "img/" + data.current_weather.weathercode + ".png");
+                    temperature.innerHTML = data.current_weather.temperature;
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+getLocation();
