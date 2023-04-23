@@ -4,6 +4,7 @@ let showWeather: HTMLElement | null = document.getElementById("show-weather")!;
 let temperature: HTMLElement | null = document.getElementById("temperature")!;
 let imageWeather: HTMLElement | null =
     document.getElementById("image-weather")!;
+let background: HTMLElement | null = document.getElementById("background")!;
 
 let header: object = {
     method: "GET",
@@ -60,7 +61,8 @@ async function getWeather(position: any) {
 getLocation();
 
 function generateBase() {
-    let background: HTMLElement | null = document.getElementById("background")!;
     const randomNum = Math.floor(Math.random() * 11) + 1;
-    background.style.backgroundImage = `url('./img/waves-${randomNum}.svg')`;
+    if (background) {
+        background.style.backgroundImage = `url('./img/waves-${randomNum}.svg')`;
+    }
 }

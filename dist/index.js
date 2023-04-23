@@ -40,6 +40,7 @@ var scoreBtns = document.getElementById("score-btns");
 var showWeather = document.getElementById("show-weather");
 var temperature = document.getElementById("temperature");
 var imageWeather = document.getElementById("image-weather");
+var background = document.getElementById("background");
 var header = {
     method: "GET",
     headers: { Accept: "application/json" },
@@ -110,7 +111,8 @@ function getWeather(position) {
 }
 getLocation();
 function generateBase() {
-    var background = document.getElementById("background");
     var randomNum = Math.floor(Math.random() * 11) + 1;
-    background.style.backgroundImage = "url('./img/waves-" + randomNum + ".svg')";
+    if (background) {
+        background.style.backgroundImage = "url('./img/waves-" + randomNum + ".svg')";
+    }
 }
