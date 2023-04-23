@@ -18,7 +18,10 @@ async function getData() {
     let jokes: any = await fetch(url, header);
     let result: any = await jokes.json();
     results = result.joke;
-    jokeHolder.innerHTML = results;
+    //verificación de nulidad antes de modificar el contenido del elemento para evitar errores:
+    if (jokeHolder) {
+        jokeHolder.innerHTML = results;
+    }
     //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
     scoreBtns?.classList.remove("notshow");
 }
@@ -31,6 +34,8 @@ function getReport(score: number) {
     });
 }
 
+//retrieve the user's current location (latitude and longitude)
+//using the browser's built-in geolocation service.
 function getLocation() {
     navigator.geolocation.getCurrentPosition(getWeather);
 }
@@ -43,6 +48,7 @@ async function getWeather(position: any) {
     let result: any = await fetch(urlWeather, header);
     let data: any = await result.json();
     console.log(data.current_weather);
+    //set the src attribute of an HTML img element.
     imageWeather!.setAttribute(
         "src",
         `img/${data.current_weather.weathercode}.png`

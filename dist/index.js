@@ -60,7 +60,10 @@ function getData() {
                 case 2:
                     result = _a.sent();
                     results = result.joke;
-                    jokeHolder.innerHTML = results;
+                    //verificación de nulidad antes de modificar el contenido del elemento para evitar errores:
+                    if (jokeHolder) {
+                        jokeHolder.innerHTML = results;
+                    }
                     //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
                     scoreBtns === null || scoreBtns === void 0 ? void 0 : scoreBtns.classList.remove("notshow");
                     return [2 /*return*/];
@@ -75,6 +78,8 @@ function getReport(score) {
         date: new Date().toISOString(),
     });
 }
+//retrieve the user's current location (latitude and longitude)
+//using the browser's built-in geolocation service.
 function getLocation() {
     navigator.geolocation.getCurrentPosition(getWeather);
 }
@@ -94,6 +99,7 @@ function getWeather(position) {
                 case 2:
                     data = _a.sent();
                     console.log(data.current_weather);
+                    //set the src attribute of an HTML img element.
                     imageWeather.setAttribute("src", "img/" + data.current_weather.weathercode + ".png");
                     temperature.innerHTML = data.current_weather.temperature;
                     return [2 /*return*/];
