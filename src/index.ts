@@ -15,7 +15,6 @@ let reportJokes: object[] = [];
 
 async function getData() {
     const url: string = "https://icanhazdadjoke.com/";
-
     const jokes: any = await fetch(url, header);
     const result: any = await jokes.json();
     results = result.joke;
@@ -30,8 +29,6 @@ function getReport(score: number) {
         score: score,
         date: new Date().toISOString(),
     });
-
-    console.log(reportJokes);
 }
 
 function getLocation() {
@@ -41,7 +38,6 @@ function getLocation() {
 async function getWeather(position: any) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
-
     const urlWeather: string = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=Europe%2FBerlin`;
 
     const result: any = await fetch(urlWeather, header);

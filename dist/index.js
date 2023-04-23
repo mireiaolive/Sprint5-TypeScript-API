@@ -74,7 +74,6 @@ function getReport(score) {
         score: score,
         date: new Date().toISOString(),
     });
-    console.log(reportJokes);
 }
 function getLocation() {
     navigator.geolocation.getCurrentPosition(getWeather);
