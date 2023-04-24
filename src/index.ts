@@ -21,13 +21,26 @@ async function getData() {
 
     let jokes: any = await fetch(url, header);
     let result: any = await jokes.json();
-    results = result.joke;
+    //results = result.joke;
     //verificación de nulidad antes de modificar el contenido del elemento para evitar errores:
-    if (jokeHolder) {
-        jokeHolder.innerHTML = results;
-    }
+    // if (jokeHolder) {
+    //     jokeHolder.innerHTML = results;
+    // }
     //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
     scoreBtns?.classList.remove("notshow");
+
+    let chuckJokes: any = await fetch(urlChuck, header);
+    let chuckResult: any = await chuckJokes.json();
+    console.log(chuckResult);
+    console.log(result);
+    //number variable will be assigned either 0 or 1 randomly.
+    let number = Math.round(Math.random());
+    //console.log(number);
+    let display = number ? result.joke : chuckResult.value;
+    if (jokeHolder) {
+        jokeHolder.innerHTML = display;
+    }
+
     generateBase();
 }
 
@@ -59,7 +72,6 @@ async function getWeather(position: any) {
         `img/${data.current_weather.weathercode}.svg`
     );
     temperature!.innerHTML = data.current_weather.temperature;
-    city!.innerHTML = data.current_weather.city;
 }
 
 getLocation();

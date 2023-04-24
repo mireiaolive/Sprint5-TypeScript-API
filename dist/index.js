@@ -50,7 +50,7 @@ var results;
 var reportJokes = [];
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, urlChuck, jokes, result;
+        var url, urlChuck, jokes, result, chuckJokes, chuckResult, number, display;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -62,13 +62,26 @@ function getData() {
                     return [4 /*yield*/, jokes.json()];
                 case 2:
                     result = _a.sent();
-                    results = result.joke;
+                    //results = result.joke;
                     //verificación de nulidad antes de modificar el contenido del elemento para evitar errores:
-                    if (jokeHolder) {
-                        jokeHolder.innerHTML = results;
-                    }
+                    // if (jokeHolder) {
+                    //     jokeHolder.innerHTML = results;
+                    // }
                     //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
                     scoreBtns === null || scoreBtns === void 0 ? void 0 : scoreBtns.classList.remove("notshow");
+                    return [4 /*yield*/, fetch(urlChuck, header)];
+                case 3:
+                    chuckJokes = _a.sent();
+                    return [4 /*yield*/, chuckJokes.json()];
+                case 4:
+                    chuckResult = _a.sent();
+                    console.log(chuckResult);
+                    console.log(result);
+                    number = Math.round(Math.random());
+                    display = number ? result.joke : chuckResult.value;
+                    if (jokeHolder) {
+                        jokeHolder.innerHTML = display;
+                    }
                     generateBase();
                     return [2 /*return*/];
             }
@@ -106,7 +119,6 @@ function getWeather(position) {
                     //set the src attribute of an HTML img element.
                     imageWeather.setAttribute("src", "img/" + data.current_weather.weathercode + ".svg");
                     temperature.innerHTML = data.current_weather.temperature;
-                    city.innerHTML = data.current_weather.city;
                     return [2 /*return*/];
             }
         });
