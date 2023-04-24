@@ -2,6 +2,7 @@ let jokeHolder: HTMLElement | null = document.getElementById("joke");
 let scoreBtns: HTMLElement | null = document.getElementById("score-btns");
 let showWeather: HTMLElement | null = document.getElementById("show-weather")!;
 let temperature: HTMLElement | null = document.getElementById("temperature")!;
+let city: HTMLElement | null = document.getElementById("city")!;
 let imageWeather: HTMLElement | null =
     document.getElementById("image-weather")!;
 let background: HTMLElement | null = document.getElementById("background")!;
@@ -16,6 +17,8 @@ let reportJokes: object[] = [];
 
 async function getData() {
     let url: string = "https://icanhazdadjoke.com/";
+    let urlChuck: string = "https://api.chucknorris.io/jokes/random";
+
     let jokes: any = await fetch(url, header);
     let result: any = await jokes.json();
     results = result.joke;
@@ -53,9 +56,10 @@ async function getWeather(position: any) {
     //set the src attribute of an HTML img element.
     imageWeather!.setAttribute(
         "src",
-        `img/${data.current_weather.weathercode}.png`
+        `img/${data.current_weather.weathercode}.svg`
     );
     temperature!.innerHTML = data.current_weather.temperature;
+    city!.innerHTML = data.current_weather.city;
 }
 
 getLocation();

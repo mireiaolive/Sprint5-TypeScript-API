@@ -9,18 +9,24 @@
     </head>
     <body>
         <div id="show-weather">
-            <img id="image-weather" src="./img/0.png" alt="Weather graphics" />
+            <img id="image-weather" src="./img/0.svg" alt="Weather graphics" />
             <h1><span id="temperature"></span>º</h1>
+            <h2 id="city"></h2>
         </div>
         <div class="container" id="background">
-            <h2>Preparat per riure!?</h2>
-            <p id="joke"></p>
-            <div class="rate-container notshow" id="score-btns">
-                <button class="rate-btn" onclick="getReport(1)">1</button>
-                <button class="rate-btn" onclick="getReport(2)">2</button>
-                <button class="rate-btn" onclick="getReport(3)">3</button>
+            <div class="wrapper">
+                <h2>Preparat per riure!?</h2>
+                <p id="joke"></p>
+                <div class="rate-container notshow" id="score-btns">
+                    <button class="rate-btn" onclick="getReport(1)">1</button>
+                    <button class="rate-btn" onclick="getReport(2)">2</button>
+                    <button class="rate-btn" onclick="getReport(3)">3</button>
+                </div>
+
+                <button class="getJoke" onclick="getData()">
+                    Seguent Acudit
+                </button>
             </div>
-            <button class="getJoke" onclick="getData()">Seguent Acudit</button>
         </div>
         <script src="./dist/index.js"></script>
     </body>

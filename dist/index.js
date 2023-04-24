@@ -39,6 +39,7 @@ var jokeHolder = document.getElementById("joke");
 var scoreBtns = document.getElementById("score-btns");
 var showWeather = document.getElementById("show-weather");
 var temperature = document.getElementById("temperature");
+var city = document.getElementById("city");
 var imageWeather = document.getElementById("image-weather");
 var background = document.getElementById("background");
 var header = {
@@ -49,11 +50,12 @@ var results;
 var reportJokes = [];
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, jokes, result;
+        var url, urlChuck, jokes, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     url = "https://icanhazdadjoke.com/";
+                    urlChuck = "https://api.chucknorris.io/jokes/random";
                     return [4 /*yield*/, fetch(url, header)];
                 case 1:
                     jokes = _a.sent();
@@ -102,8 +104,9 @@ function getWeather(position) {
                     data = _a.sent();
                     console.log(data.current_weather);
                     //set the src attribute of an HTML img element.
-                    imageWeather.setAttribute("src", "img/" + data.current_weather.weathercode + ".png");
+                    imageWeather.setAttribute("src", "img/" + data.current_weather.weathercode + ".svg");
                     temperature.innerHTML = data.current_weather.temperature;
+                    city.innerHTML = data.current_weather.city;
                     return [2 /*return*/];
             }
         });
