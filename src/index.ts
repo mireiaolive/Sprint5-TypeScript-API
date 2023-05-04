@@ -12,35 +12,39 @@ let header: object = {
     headers: { Accept: "application/json" },
 };
 
+let data: string;
 let results: string;
 let reportJokes: object[] = [];
 
-async function getData() {
+async function getData(): Promise<void> {
     let url: string = "https://icanhazdadjoke.com/";
-    let urlChuck: string = "https://api.chucknorris.io/jokes/random";
-
     let jokes: any = await fetch(url, header);
     let result: any = await jokes.json();
-    //results = result.joke;
-    //verificación de nulidad antes de modificar el contenido del elemento para evitar errores:
-    // if (jokeHolder) {
-    //     jokeHolder.innerHTML = results;
-    // }
-    //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
+    results = result.joke;
     scoreBtns?.classList.remove("notshow");
+    console.log("ican joke: ", results);
+    //display on screen
+    if (jokeHolder) {
+        jokeHolder.innerHTML = `<cite>"${results}"</cite>`;
+    }
+}
 
+async function getChuck(): Promise<void> {
+    let urlChuck: string = "https://api.chucknorris.io/jokes/random";
     let chuckJokes: any = await fetch(urlChuck, header);
     let chuckResult: any = await chuckJokes.json();
-    console.log(chuckResult);
-    console.log(result);
-    //number variable will be assigned either 0 or 1 randomly.
-    let number = Math.round(Math.random());
-    //console.log(number);
-    let display = number ? result.joke : chuckResult.value;
+    data = chuckResult.value;
+    console.log("chuck joke: ", data);
+    //display on screen
     if (jokeHolder) {
-        jokeHolder.innerHTML = display;
+        jokeHolder.innerHTML = `<cite>"${data}"</cite>`;
     }
+}
 
+async function getJoke() {
+    let number = Math.floor(Math.random() * 10);
+    console.log(number);
+    number >= 5 ? getData() : getChuck();
     generateBase();
 }
 

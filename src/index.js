@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -44,47 +43,69 @@ var imageWeather = document.getElementById("image-weather");
 var background = document.getElementById("background");
 var header = {
     method: "GET",
-    headers: { Accept: "application/json" },
+    headers: { Accept: "application/json" }
 };
+var data;
 var results;
 var reportJokes = [];
 function getData() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, urlChuck, jokes, result, chuckJokes, chuckResult, number, display;
+        var url, jokes, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     url = "https://icanhazdadjoke.com/";
-                    urlChuck = "https://api.chucknorris.io/jokes/random";
                     return [4 /*yield*/, fetch(url, header)];
                 case 1:
                     jokes = _a.sent();
                     return [4 /*yield*/, jokes.json()];
                 case 2:
                     result = _a.sent();
-                    //results = result.joke;
-                    //verificación de nulidad antes de modificar el contenido del elemento para evitar errores:
-                    // if (jokeHolder) {
-                    //     jokeHolder.innerHTML = results;
-                    // }
-                    //chaining operator ? is used to avoid a runtime when scoreBtns is undefined or null.
+                    results = result.joke;
                     scoreBtns === null || scoreBtns === void 0 ? void 0 : scoreBtns.classList.remove("notshow");
-                    return [4 /*yield*/, fetch(urlChuck, header)];
-                case 3:
-                    chuckJokes = _a.sent();
-                    return [4 /*yield*/, chuckJokes.json()];
-                case 4:
-                    chuckResult = _a.sent();
-                    console.log(chuckResult);
-                    console.log(result);
-                    number = Math.round(Math.random());
-                    display = number ? result.joke : chuckResult.value;
+                    console.log("ican joke: ", results);
+                    //display on screen
                     if (jokeHolder) {
-                        jokeHolder.innerHTML = display;
+                        jokeHolder.innerHTML = "<cite>\"" + results + "\"</cite>";
                     }
-                    generateBase();
                     return [2 /*return*/];
             }
+        });
+    });
+}
+function getChuck() {
+    return __awaiter(this, void 0, void 0, function () {
+        var urlChuck, chuckJokes, chuckResult;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    urlChuck = "https://api.chucknorris.io/jokes/random";
+                    return [4 /*yield*/, fetch(urlChuck, header)];
+                case 1:
+                    chuckJokes = _a.sent();
+                    return [4 /*yield*/, chuckJokes.json()];
+                case 2:
+                    chuckResult = _a.sent();
+                    data = chuckResult.value;
+                    console.log("chuck joke: ", data);
+                    //display on screen
+                    if (jokeHolder) {
+                        jokeHolder.innerHTML = "<cite>\"" + data + "\"</cite>";
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function getJoke() {
+    return __awaiter(this, void 0, void 0, function () {
+        var number;
+        return __generator(this, function (_a) {
+            number = Math.floor(Math.random() * 10);
+            console.log(number);
+            number >= 5 ? getData() : getChuck();
+            generateBase();
+            return [2 /*return*/];
         });
     });
 }
@@ -92,7 +113,7 @@ function getReport(score) {
     reportJokes.push({
         joke: results,
         score: score,
-        date: new Date().toISOString(),
+        date: new Date().toISOString()
     });
 }
 //retrieve the user's current location (latitude and longitude)
