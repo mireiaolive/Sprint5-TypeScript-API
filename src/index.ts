@@ -22,8 +22,6 @@ async function getData(): Promise<void> {
     let result: any = await jokes.json();
     results = result.joke;
     scoreBtns?.classList.remove("notshow");
-    console.log("ican joke: ", results);
-    //display on screen
     if (jokeHolder) {
         jokeHolder.innerHTML = `<cite>"${results}"</cite>`;
     }
@@ -34,8 +32,6 @@ async function getChuck(): Promise<void> {
     let chuckJokes: any = await fetch(urlChuck, header);
     let chuckResult: any = await chuckJokes.json();
     data = chuckResult.value;
-    console.log("chuck joke: ", data);
-    //display on screen
     if (jokeHolder) {
         jokeHolder.innerHTML = `<cite>"${data}"</cite>`;
     }
@@ -43,7 +39,6 @@ async function getChuck(): Promise<void> {
 
 async function getJoke() {
     let number = Math.floor(Math.random() * 10);
-    console.log(number);
     number >= 5 ? getData() : getChuck();
     generateBase();
 }

@@ -63,8 +63,6 @@ function getData() {
                     result = _a.sent();
                     results = result.joke;
                     scoreBtns === null || scoreBtns === void 0 ? void 0 : scoreBtns.classList.remove("notshow");
-                    console.log("ican joke: ", results);
-                    //display on screen
                     if (jokeHolder) {
                         jokeHolder.innerHTML = "<cite>\"" + results + "\"</cite>";
                     }
@@ -87,8 +85,6 @@ function getChuck() {
                 case 2:
                     chuckResult = _a.sent();
                     data = chuckResult.value;
-                    console.log("chuck joke: ", data);
-                    //display on screen
                     if (jokeHolder) {
                         jokeHolder.innerHTML = "<cite>\"" + data + "\"</cite>";
                     }
@@ -102,7 +98,6 @@ function getJoke() {
         var number;
         return __generator(this, function (_a) {
             number = Math.floor(Math.random() * 10);
-            console.log(number);
             number >= 5 ? getData() : getChuck();
             generateBase();
             return [2 /*return*/];
